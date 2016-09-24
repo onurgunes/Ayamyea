@@ -39,7 +39,7 @@
         for(i = 0; i < dataLen; i++){
 
             content = "Başlık : ".concat(data[i].title).concat("<br/>")
-            .concat("İlanNo : ").concat(data[i].id).concat("<br/>")
+            .concat("İlanNo : <a target='_blank' href='").concat(data[i].url).concat("'>").concat(data[i].id).concat("</a><br/>")
             .concat("İlçe : ").concat(data[i].town).concat("<br/>")
             .concat("Semt/Mahalle : ").concat(data[i].district).concat("<br/>")
             .concat("Fiyat : ").concat(data[i].price).concat("<br/>")

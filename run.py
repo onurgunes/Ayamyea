@@ -20,7 +20,6 @@ def generate_url(city, towns, max_price, a20, page_offset):
 
 def get_urls(link):
     urls = []
-
     request = urllib.request.Request(link)
     request.add_header('User-Agent', "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11")
 
@@ -74,13 +73,14 @@ def write_json(flats):
     data = "_data = \'[" + data
     data += "]\';"
 
-    file = open("data.json", "w")
-    file.write(data)
+    with open("data.json", "w") as file:
+    	file.write(data)
 
 
 def open_the_map():
     path = "file://" + os.path.abspath('map.html')
     webbrowser.open(path)
+
 
 flats = []
 urls = []
@@ -89,12 +89,13 @@ city = "6" # İl ; "6": Ankara
 towns = ["64"] # İlçeler ; "59": Çankaya, "61": Keçiören, "64": Yenimahalle
 max_price = "1000"
 a20 = ["38473"]  # Oda sayısı ;  1+1: 38473, 2+1: 38470, 3+1: 38474
-page_offset = 50
+page_offset = 0
 is_last_page = False
 
 while not is_last_page:
     link = generate_url(city, towns, max_price, a20, page_offset)
     new_urls, is_last_page = get_urls(link)
+    print(link)
     urls += new_urls
     page_offset += 50
 
